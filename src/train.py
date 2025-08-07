@@ -46,7 +46,6 @@ def main(
         per_device_eval_batch_size=2,
         warmup_steps=500,
 
-        save_total_limit = 3,
         learning_rate    = 2e-5,
         weight_decay     = 0.01,
         fp16             = torch.cuda.is_available(),
