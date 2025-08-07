@@ -39,12 +39,11 @@ def main(
 
     args = TrainingArguments(
         output_dir = out_dir,
-        num_train_epochs = epochs,
-        per_device_train_batch_size = batch,
+        num_train_epochs = 1,
+        per_device_train_batch_size = 1,
 
-        evaluation_strategy      = "epoch",   # run eval once every epoch
-        save_strategy            = "epoch",   # save a checkpoint every epoch
-        logging_strategy         = "epoch",   # log metrics every epoch
+        per_device_eval_batch_size=2,
+        warmup_steps=500,
 
         save_total_limit = 3,
         learning_rate    = 2e-5,
