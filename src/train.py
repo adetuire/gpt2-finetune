@@ -39,8 +39,9 @@ def main(
 
     args = TrainingArguments(
         output_dir = out_dir,
-        num_train_epochs = 1,
-        per_device_train_batch_size = 1,
+        num_train_epochs = epochs,
+        gradient_accumulation_steps = 8,
+        per_device_train_batch_size = batch,
 
         per_device_eval_batch_size=2,
         warmup_steps=500,
