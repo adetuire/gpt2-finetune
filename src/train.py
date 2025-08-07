@@ -43,10 +43,9 @@ def main(
         num_train_epochs = epochs,
         per_device_train_batch_size = batch,
 
-        # API
-        val_epochs   = 1,
-        save_epochs   = 1,
-        log_epochs    = 1,
+        evaluation_strategy      = "epoch",   # run eval once every epoch
+        save_strategy            = "epoch",   # save a checkpoint every epoch
+        logging_strategy         = "epoch",   # log metrics every epoch
 
         save_total_limit = 3,
         learning_rate    = 2e-5,
