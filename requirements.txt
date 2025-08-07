@@ -1,4 +1,4 @@
-transformers>=4.54
+transformers==4.54.1   # ← tutorial compatible
 datasets>=3.9
 accelerate>=0.29
 torch>=2.2
