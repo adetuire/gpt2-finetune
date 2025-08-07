@@ -8,7 +8,7 @@ from transformers import (
     TrainingArguments,
     Trainer,
 )
-
+device = "cuda" if torch.cuda.is_available() else "cpu"
 app = typer.Typer(help="Fine-tune GPT-2 with HuggingFace")
 
 def seed_everything(seed: int):
@@ -49,8 +49,11 @@ def main(
         save_total_limit = 3,
         learning_rate    = 2e-5,
         weight_decay     = 0.01,
-        fp16             = True,
-        seed             = 42
+        fp16             = torch.cuda.is_available(),
+        save_steps = 500,
+        logging_steps = 50,
+        save_total_limit=3,
+        seed             = seed,
     )
 
     trainer = Trainer(
