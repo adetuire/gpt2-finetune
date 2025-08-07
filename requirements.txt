@@ -6,3 +6,4 @@ evaluate>=0.4
 rich 
 typer 
 tqdm
+python-dotenv
