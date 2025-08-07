@@ -8,7 +8,6 @@ from transformers import (
     TrainingArguments,
     Trainer,
 )
-from transformers.training_args import TrainingArguments
 
 app = typer.Typer(help="Fine-tune GPT-2 with HuggingFace")
 
