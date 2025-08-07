@@ -3,4 +3,6 @@ datasets>=3.9
 accelerate>=0.29
 torch>=2.2
 evaluate>=0.4
-rich typer tqdm
+rich 
+typer 
+tqdm
