@@ -1,0 +1,14 @@
+# python
+.venv/
+__pycache__/
+*.pyc
+
+# data / checkpoints
+data/
+results/
+*.pt
+*.ckpt
+
+# env / editor
+.env
+.vscode/
