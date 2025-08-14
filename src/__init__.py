@@ -1,6 +1,3 @@
-python -m src.evaluate perplexity \
-  --model /content/gpt2_export \
-  --n-texts 2000 \
-  --batch-size 4 \
-  --cache-dir /content/cache \
-  --out-json results/ppl.json
+# src/__init__.py
+"""Package for training, generation, and evaluation CLIs."""
+__version__ = "0.1.0"
