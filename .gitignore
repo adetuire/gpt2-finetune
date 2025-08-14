@@ -12,3 +12,9 @@ results/
 # env / editor
 .env
 .vscode/
+
+# caches & runs
+.cache/
+wandb/
+.ipynb_checkpoints/
+

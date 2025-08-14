@@ -12,16 +12,6 @@ python -m src.train \
   --epochs 3 \
   --out-dir results
 
-# export
-python - <<'PY'
-from transformers import GPT2LMHeadModel, GPT2TokenizerFast
-from pathlib import Path
-CKPT, EXP = Path("results/checkpoint-final"), Path("gpt2_export"); EXP.mkdir(exist_ok=True)
-GPT2LMHeadModel.from_pretrained(CKPT).save_pretrained(EXP)
-GPT2TokenizerFast.from_pretrained("gpt2").save_pretrained(EXP)
-print("exported to", EXP)
-PY
-
 # Evaluate perplexity on IMDB test using a Hub model
 python -m src.evaluate \
   --model adetuire1/gpt2-imdb-tuned \
@@ -29,10 +19,36 @@ python -m src.evaluate \
   --n-texts 2000 --batch-size 4 --max-len 512 \
   --cache-dir /content/cache \
   --out-json results/ppl.json
-
-# generate
-python -m src.generate --model gpt2_export --prompt "Once upon a time"
-python -m src.generate --model adetuire1/gpt2-imdb-tuned --prompt "Once upon a time"
-python -m src.evaluate perplexity --model adetuire1/gpt2-imdb-tuned --n-texts 2000 --out-json results/ppl.json
-
 ```
+**Notes**
+GPT-2 has no pad token; the evaluator sets `pad_token = eos_token` for safe batching.
+
+Artifacts write to `results/` (see “Viewing results” below).
+
+
+### Generate
+```bash
+python -m src.generate \
+  --model ./results/checkpoint-final \
+  --prompt "Once upon a time" \
+  --max-len 100
+```
+### Generate
+
+```bash
+# The script expects --model-dir (not --model)
+python -m src.generate \
+  --model-dir ./results/checkpoint-final \
+  --prompt "Once upon a time" \
+  --max-len 100
+```
+
+If you pass a Hugging Face Hub model id, use it as the value of `--model-dir`, e.g.
+`--model-dir adetuire1/gpt2-imdb-tuned`.
+
+### Viewing results
+Perplexity metrics are written to `results/ppl.json`. View them with:
+
+Linux/macOS: `cat results/ppl.json`
+
+Windows (PowerShell): `Get-Content results/ppl.json`
