@@ -22,8 +22,13 @@ GPT2TokenizerFast.from_pretrained("gpt2").save_pretrained(EXP)
 print("exported to", EXP)
 PY
 
-# evaluate
-python -m src.evaluate perplexity --model gpt2_export --n-texts 2000 --out-json results/ppl.json
+# Evaluate perplexity on IMDB test using a Hub model
+python -m src.evaluate \
+  --model adetuire1/gpt2-imdb-tuned \
+  --dataset-name imdb --split test \
+  --n-texts 2000 --batch-size 4 --max-len 512 \
+  --cache-dir /content/cache \
+  --out-json results/ppl.json
 
 # generate
 python -m src.generate --model gpt2_export --prompt "Once upon a time"
