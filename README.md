@@ -3,9 +3,14 @@
 Fine-tune GPT-2 on any text corpus using Transformers & Datasets.
 
 ## Quickstart
+
+### Train (IMDB → GPT-2)
 ```bash
-# train
-python -m src.train --dataset-name imdb --model-name gpt2 --epochs 1 --batch 4 --max-len 256 --out-dir results
+python -m src.train \
+  --dataset-name imdb \
+  --model-name gpt2 \
+  --epochs 3 \
+  --out-dir results
 
 # export
 python - <<'PY'
@@ -22,4 +27,7 @@ python -m src.evaluate perplexity --model gpt2_export --n-texts 2000 --out-json 
 
 # generate
 python -m src.generate --model gpt2_export --prompt "Once upon a time"
+python -m src.generate --model adetuire1/gpt2-imdb-tuned --prompt "Once upon a time"
+python -m src.evaluate perplexity --model adetuire1/gpt2-imdb-tuned --n-texts 2000 --out-json results/ppl.json
+
 ```
