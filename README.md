@@ -36,7 +36,7 @@ python -m src.generate \
 ### Generate
 
 ```bash
-# The script expects --model-dir (not --model)
+# The script expects --model-dir (or --model)
 python -m src.generate \
   --model-dir ./results/checkpoint-final \
   --prompt "Once upon a time" \
